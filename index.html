@@ -488,9 +488,9 @@ const TEXT = {
   timeTitle:{zh:'选择开始和结束时间', en:'Pick a start and end time'},
   timeSub:{zh:'太靠近其他预约的时间会自动跳过', en:'Times too close to another plan are skipped'},
   localTimeLabel:{zh:'你的当地时间', en:'Your local time'},
-  easternTimeLabel:{zh:'美东时间', en:'Eastern Time'},
-  sameEasternTime:{zh:'你的当地时间与美东时间一致', en:'Your local time matches Eastern Time'},
-  timezoneIntro:{zh:'日期以美东时间为准；每个时段同时显示你的当地时间。无需定位权限。', en:'Dates are based on Eastern Time; each slot also shows your local time. No location permission is used.'},
+  easternTimeLabel:{zh:'北京时间', en:'Beijing Time'},
+  sameEasternTime:{zh:'你的当地时间与北京时间一致', en:'Your local time matches Beijing Time'},
+  timezoneIntro:{zh:'日期以北京时间为准；每个时段同时显示你的当地时间。无需定位权限。', en:'Dates are based on Beijing Time; each slot also shows your local time. No location permission is used.'},
   pastStatus:{zh:'已过', en:'Past'},
   chooseStart:{zh:'选择开始时间', en:'Choose a start time'},
   chooseEnd:{zh:'选择结束时间', en:'Choose an end time'},
@@ -554,14 +554,14 @@ const EMAIL_CONFIG = {
   publicKey:'UVV5umKxP9ZIGcyiO',
   serviceId:'service_33myi6c',
   templateId:'template_1cq0b8g',
-  ownerEmail:''
+  ownerEmail:'745063785@qq.com'
 };
 
 const ADMIN_PASSCODE = "1234";
 const BUFFER_MIN = 60;
 const DAY_START = 8*60, DAY_END = 21*60+30, MAX_DURATION = 240, STEP = 30;
 const DATE_RANGE_DAYS = 14;
-const OWNER_TIME_ZONE = 'America/New_York';
+const OWNER_TIME_ZONE = 'Asia/Shanghai';
 const VISITOR_TIME_ZONE = Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC';
 
 let lang = 'zh';
@@ -1079,7 +1079,7 @@ async function sendBookingEmail(booking, status='confirmed'){
     activity: typeLabel(booking),
     status: status === 'cancelled' ? (lang==='zh'?'预约已取消':'Booking cancelled') : (lang==='zh'?'预约确认':'Booking confirmed'),
     date: fmtEmailDate(booking.date),
-    time: `${fmtTime(booking.startMinutes)} – ${fmtTime(booking.endMinutes)} ${lang==='zh'?'美东时间':'Eastern Time'}`,
+    time: `${fmtTime(booking.startMinutes)} – ${fmtTime(booking.endMinutes)} ${lang==='zh'?'北京时间':'Beijing Time'}`,
     local_date: formatZoneDateTime(booking.date, booking.startMinutes, VISITOR_TIME_ZONE).split(' ')[0],
     local_time: formatRangeInZone(booking, VISITOR_TIME_ZONE),
     user_timezone: VISITOR_TIME_ZONE,
